@@ -38,6 +38,7 @@ func (r WindowRenderer) Render(board <-chan board.Board) {
 
 				lay := layout.NewGridLayout(int(b.XLen))
 				grid := container.New(lay)
+				window.Resize(fyne.NewSize(float32(b.XLen)*cellSize, float32(b.YLen)*cellSize))
 
 				for _, row := range b.Board {
 
@@ -54,9 +55,9 @@ func (r WindowRenderer) Render(board <-chan board.Board) {
 						grid.Add(rectangle)
 					}
 				}
+				window.Resize(fyne.NewSize(float32(b.XLen)*cellSize, float32(b.YLen)*cellSize))
 
 				window.SetContent(grid)
-				window.Resize(fyne.NewSize(float32(b.XLen)*cellSize, float32(b.YLen)*cellSize))
 			}
 		}
 	}()
